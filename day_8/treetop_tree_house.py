@@ -1,3 +1,5 @@
+import numpy as np
+
 with open("input.txt") as file:
     forest = file.readlines()
     forest = [[int(num) for num in row.strip()] for row in forest]
@@ -43,6 +45,29 @@ def solution_1():
                     break
 
             if down or up or right or left:
+                trees_visible += 1
+
+    print(trees_visible)
+
+
+def solution_1_v2():
+    global forest
+    forest = np.array(forest)
+
+    trees_visible = 0
+    for y in range(len(forest)):
+        for x in range(len(forest[y])):
+            tree = forest[y][x]
+
+            down = forest[(y + 1):len(forest), x]
+            up = forest[:y, x]
+            right = forest[y, (x + 1):len(forest)]
+            left = forest[y, :x]
+
+            if len(down) == 0 or len(up) == 0 or len(right) == 0 or len(left) == 0:
+                trees_visible += 1
+
+            elif tree > max(down) or tree > max(up) or tree > max(right) or tree > max(left):
                 trees_visible += 1
 
     print(trees_visible)
