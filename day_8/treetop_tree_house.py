@@ -11,40 +11,29 @@ def solution_1():
     for y in range(len(forest)):
         for x in range(len(forest[y])):
             tree = forest[y][x]
+            sides_visible = 4
 
-            down = True
             for d in range(y + 1, len(forest)):
-                if tree > forest[d][x]:
-                    continue
-                else:
-                    down = False
+                if tree <= forest[d][x]:
+                    sides_visible -= 1
                     break
 
-            up = True
             for u in range(y - 1, -1, -1):
-                if tree > forest[u][x]:
-                    continue
-                else:
-                    up = False
+                if tree <= forest[u][x]:
+                    sides_visible -= 1
                     break
 
-            right = True
             for r in range(x + 1, len(forest[y])):
-                if tree > forest[y][r]:
-                    continue
-                else:
-                    right = False
+                if tree <= forest[y][r]:
+                    sides_visible -= 1
                     break
 
-            left = True
             for l in range(x - 1, -1, -1):
-                if tree > forest[y][l]:
-                    continue
-                else:
-                    left = False
+                if tree <= forest[y][l]:
+                    sides_visible -= 1
                     break
 
-            if down or up or right or left:
+            if sides_visible > 0:
                 trees_visible += 1
 
     print(trees_visible)
@@ -81,41 +70,29 @@ def solution_2():
 
             down = 0
             for d in range(y + 1, len(forest)):
-                if tree > forest[d][x]:
-                    down += 1
-                    continue
-                else:
-                    down += 1
+                down += 1
+                if tree <= forest[d][x]:
                     break
 
             up = 0
             for u in range(y - 1, -1, -1):
-                if tree > forest[u][x]:
-                    up += 1
-                    continue
-                else:
-                    up += 1
+                up += 1
+                if tree <= forest[u][x]:
                     break
 
             right = 0
             for r in range(x + 1, len(forest[y])):
-                if tree > forest[y][r]:
-                    right += 1
-                    continue
-                else:
-                    right += 1
+                right += 1
+                if tree <= forest[y][r]:
                     break
 
             left = 0
             for l in range(x - 1, -1, -1):
-                if tree > forest[y][l]:
-                    left += 1
-                    continue
-                else:
-                    left += 1
+                left += 1
+                if tree <= forest[y][l]:
                     break
 
-            scenic_scores.append(down*up*left*right)
+            scenic_scores.append(down * up * left * right)
 
     print(max(scenic_scores))
 
