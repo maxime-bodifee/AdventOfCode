@@ -5,7 +5,7 @@ with open("input.txt") as file:
 
 
 def compare(left, right):
-    if type(left) == int and type(right) == int:
+    if isinstance(left, int) and isinstance(right, int):
         if left < right:
             return True
 
@@ -15,7 +15,7 @@ def compare(left, right):
         else:
             return False
 
-    elif type(left) == list and type(right) == list:
+    elif isinstance(left, list) and isinstance(right, list):
         for pair_1, pair_2 in zip(left, right):
             sort = compare(pair_1, pair_2)
 
@@ -31,10 +31,10 @@ def compare(left, right):
         else:
             return None
 
-    elif type(left) == int and type(right) == list:
+    elif isinstance(left, int) and isinstance(right, list):
         return compare([left], right)
 
-    elif type(left) == list and type(right) == int:
+    elif isinstance(left, list) and isinstance(right, int):
         return compare(left, [right])
 
 
