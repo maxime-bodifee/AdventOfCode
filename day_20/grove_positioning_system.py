@@ -14,20 +14,11 @@ def mix(filename, key=1, count=1):
     for _ in range(count):
         for num in original:
             i = nums.index(num)
-            new_i = i + num.value % (len(nums) - 1)
-
-            if new_i >= len(original):
-                new_i = new_i % len(nums) + 1
-
-            elif new_i == 0 and num.value < 0:
-                new_i = len(nums)
+            new_i = (i + num.value) % (len(nums) - 1)
 
             nums.insert(new_i, nums.pop(i))
 
-    i_0 = 0
-    for i in range(len(nums)):
-        if nums[i].value == 0:
-            i_0 = i
+    i_0 = nums.index(list(filter(lambda n: n.value == 0, nums))[0])
 
     return sum([nums[(i_0 + i) % len(nums)].value for i in range(1000, 3001, 1000)])
 
