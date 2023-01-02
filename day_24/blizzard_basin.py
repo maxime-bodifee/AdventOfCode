@@ -1,5 +1,3 @@
-import time
-
 with open("input.txt") as file:
     grid = [[char for char in row.strip()] for row in file]
 
