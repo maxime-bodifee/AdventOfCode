@@ -1,6 +1,6 @@
 from collections import deque
 
-with open("./input.txt") as file:
+with open("input.txt") as file:
     jet_pattern = file.readline()
 
 
