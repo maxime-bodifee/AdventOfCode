@@ -26,32 +26,23 @@ def part_2():
     m = [[(s, s + r - 1, d, d + r - 1) for d, s, r in mapping] for mapping in mappings]
     for mapping in m:
         new_v = []
-        process = v
-        while process:
-            x, y = process.pop()
-            mapped = False
+        q = v
+        while q:
+            x, y = q.pop()
             for s, t, d, e in mapping:
                 if y < s or x > t:
                     continue
-
-                if x >= s:
-                    new_v.append((d + x - s, min(d + y - s, d + t - s)))
-                    if y > t:
-                        process.append((t + 1, y))
-
-                elif x < s:
-                    process.append((x, s - 1))
-                    new_v.append((d, min(d + y - s, e)))
-                    if y > t:
-                        process.append((t + 1, y))
-
-                mapped = True
+                if x < s:
+                    q.append((x, s - 1))
+                if y > t:
+                    q.append((t + 1, y))
+                new_v.append((max(d, d + x - s), min(d + y - s, e)))
                 break
 
-            if not mapped:
+            else:
                 new_v.append((x, y))
 
-        v = list(set(new_v))
+        v = new_v
 
     return min(v)[0]
 
