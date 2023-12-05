@@ -6,14 +6,12 @@ def part_1():
         new_v = []
 
         for val in v:
-            mapped = False
             for d, s, r in mapping:
                 if s <= val <= s + r:
                     new_v.append(d + val - s)
-                    mapped = True
                     break
 
-            if not mapped:
+            else:
                 new_v.append(val)
 
         v = new_v
