@@ -1,4 +1,4 @@
-from math import prod
+from math import prod, ceil
 
 with open("input.txt") as file:
     times, distances = file.readlines()
@@ -12,8 +12,9 @@ t2 = int(times.strip("Time:").replace(" ", ""))
 d2 = int(distances.strip("Distance:").replace(" ", ""))
 
 # O(1)
-n = (t2 ** 2 - d2 * 4) ** 0.5
-print(round(n - 0.5) if n % 1 >= 0.5 else round(n + 0.5))
+det = (t2 ** 2 - d2 * 4) ** 0.5
+x1, x2 = (t2 + det) / 2, (t2 - det) / 2
+print(ceil(x1) - ceil(x2) + int(x1.is_integer() and x2.is_integer()))
 
 # O(n)
 print(sum(i * (t2 - i) >= d2 for i in range(t2 + 1)))
