@@ -38,8 +38,8 @@ while p != start_p:
 print(s // 2)
 
 # https://en.wikipedia.org/wiki/Shoelace_formula
-a = sum((t[i].imag + t[i + 1].imag) * (t[i].real - t[i + 1].real) for i in range(len(t) - 1))
-a += (t[-1].imag + t[0].imag) * (t[-1].real - t[0].real)
+a = sum(t[i].real * t[i + 1].imag - t[i + 1].real * t[i].imag for i in range(len(t) - 1))
+a += t[-1].real * t[0].imag - t[0].real * t[-1].imag
 
 # https://en.wikipedia.org/wiki/Pick's_theorem
 print(int((a - s) / 2) + 1)
