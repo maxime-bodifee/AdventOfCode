@@ -12,7 +12,7 @@ m = {
 # determine a valid direction based on the input
 d = 1
 
-start_p = [complex(j, i) for i, row in enumerate(inp) for j, char in enumerate(row) if inp[i][j] == "S"][0]
+start_p = [complex(j, i) for i, row in enumerate(inp) for j, char in enumerate(row) if char == "S"][0]
 p = start_p + d
 t = [p]
 s = 1
