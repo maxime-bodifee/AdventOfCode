@@ -4,7 +4,7 @@ from math import lcm
 def steps(start):
     current = start
     i = 0
-    while current != "ZZZ" and current[-1] != "Z":
+    while current[-1] != "Z":
         d = instructions[i % len(instructions)]
         current = nodes[current][d]
         i += 1
