@@ -33,15 +33,12 @@ def part_2(grid):
         grid = [row[::-1] for row in grid[::-1]]
 
         if grid in previous:
-            break
+            j = previous.index(grid)
+            k = (1_000_000_000 - j) % (i - j) + j - 1
+            return sum(i * row.count("O") for i, row in enumerate(previous[k][::-1], 1))
 
         previous.append([row.copy() for row in grid])
         i += 1
-
-    j = previous.index(grid)
-    k = (1_000_000_000 - j) % (i - j) + j - 1
-
-    return sum(i * row.count("O") for i, row in enumerate(previous[k][::-1], 1))
 
 
 if __name__ == "__main__":
