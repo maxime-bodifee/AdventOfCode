@@ -46,14 +46,10 @@ def part_2():
 
 
 with open("input.txt") as file:
-    vals, *input_txt = [line.strip("\n") for line in file.readlines()]
+    mappings = list(map(str.splitlines, file.read().split('\n\n')))
 
-vals = list(map(int, vals.strip("seeds: ").split()))
-
-ind = [i for i, x in enumerate(input_txt) if x == ""] + [-1]
-mappings = []
-for i in range(len(ind) - 1):
-    mappings.append([list(map(int, line.split())) for line in input_txt[ind[i] + 2:ind[i + 1]]])
+vals = list(map(int, mappings[0][0].strip("seeds: ").split()))
+mappings = [[list(map(int, row.split())) for row in mapping[1:]] for mapping in mappings[1:]]
 
 print(part_1())
 print(part_2())
