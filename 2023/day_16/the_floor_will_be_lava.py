@@ -32,14 +32,14 @@ def part_1():
 
 
 def part_2():
-    b = [((i * 1j, 1), (len(grid[0]) - 1 + i * 1j, -1)) for i in range(len(grid))] + \
+    b = [((i * 1j, 1), (i * 1j + len(grid[0]) - 1, -1)) for i in range(len(grid))] + \
         [((i, 1j), (i + (len(grid) - 1) * 1j, -1j)) for i in range(1, len(grid[0]) - 1)]
     return max(energized(p) for ps in b for p in ps)
 
 
 if __name__ == "__main__":
     with open("input.txt") as file:
-        grid = list(map(list, file.read().splitlines()))
+        grid = file.read().splitlines()
 
     print(part_1())
     print(part_2())
