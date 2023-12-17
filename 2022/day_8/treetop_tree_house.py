@@ -1,8 +1,7 @@
 import numpy as np
 
 with open("input.txt") as file:
-    forest = file.readlines()
-    forest = [[int(num) for num in row.strip()] for row in forest]
+    forest = np.array(list(map(list, file.read().splitlines()))).astype(np.ushort)
 
 
 def solution_1():
@@ -97,4 +96,15 @@ def solution_2():
     print(max(scenic_scores))
 
 
-solution_2()
+def solution_2_v2():
+    print(max(
+        np.prod([len(score) if score.all() else np.argmax(~score) + 1 for score in [
+            np.asarray(forest[(y + 1):, x] < forest[y, x]),
+            np.asarray(forest[:y, x][::-1] < forest[y, x]),
+            np.asarray(forest[y, (x + 1):] < forest[y, x]),
+            np.asarray(forest[y, :x][::-1] < forest[y, x])
+        ]]) for y in range(1, len(forest) - 1) for x in range(1, len(forest[y]) - 1)
+    ))
+
+
+solution_2_v2()
