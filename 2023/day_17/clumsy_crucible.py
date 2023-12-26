@@ -24,9 +24,9 @@ def adjacency(min_step, max_step):
 def dijkstra(adj):
     d = [[[float("inf")] * 2 for _ in range(len(inp[0]))] for _ in range(len(inp))]
     d[0][0] = [0., 0.]
-    q = [(0., (0, 0), H), (0., (0, 0), V)]
+    q = [(0., 0, 0, H), (0., 0, 0, V)]
     while q:
-        cd, (x, y), k = heapq.heappop(q)
+        cd, x, y, k = heapq.heappop(q)
 
         if cd > d[y][x][k]:
             continue
@@ -34,7 +34,7 @@ def dijkstra(adj):
         for (nx, ny), cost in adj[y][x][nk := k ^ 1]:
             if d[y][x][k] + cost < d[ny][nx][nk]:
                 d[ny][nx][nk] = d[y][x][k] + cost
-                heapq.heappush(q, (d[ny][nx][nk], (nx, ny), nk))
+                heapq.heappush(q, (d[ny][nx][nk], nx, ny, nk))
 
     return int(min(d[len(inp) - 1][len(inp[0]) - 1]))
 
