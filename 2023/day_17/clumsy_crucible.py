@@ -1,5 +1,4 @@
 import heapq
-import time
 
 V, H = 0, 1
 
