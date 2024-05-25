@@ -3,19 +3,18 @@
 
 def walk(grid):
     sy, sx = [(i, j) for i, row in enumerate(grid) for j, char in enumerate(row) if char == "S"][0]
-    visited = {(sx, sy): 0}
-    q = [(sx, sy)]
+    v, q = {(sx, sy): 0}, [(sx, sy)]
 
     while q:
         x, y = q.pop(0)
         for (dx, dy) in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
             nx, ny = x + dx, y + dy
             if 0 <= nx < len(grid[0]) and 0 <= ny < len(grid):
-                if grid[ny][nx] == "." and (nx, ny) not in visited:
-                    visited[(nx, ny)] = visited[(x, y)] + 1
+                if grid[ny][nx] == "." and (nx, ny) not in v:
+                    v[(nx, ny)] = v[(x, y)] + 1
                     q.append((nx, ny))
 
-    return visited.values()
+    return v.values()
 
 
 def part_1(dists):
