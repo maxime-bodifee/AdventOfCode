@@ -12,7 +12,7 @@ for row in re.findall(r"mul\(\d+,\d+\)", inp):
 print(total_1)
 
 # alternative: part 1 in a single line
-print(sum(int(a) * int(b) for mul in re.findall(r"mul\(\d+,\d+\)", inp) for a, b in [re.search(r"(\d+),(\d+)", mul).groups()]))
+print(sum(int(a) * int(b) for a, b in re.findall(r"mul\((\d+),(\d+)\)", inp)))
 
 total_2 = 0
 enabled = True
