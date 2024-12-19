@@ -35,7 +35,12 @@ total_1 = 0
 for region in regions:
     perimeter = 0
     for x, y in region:
-        perimeter += 4 - sum((x + dx, y + dy) in region for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)])
+        neighbours = 0
+        for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+            if (x + dx, y + dy) in region:
+                neighbours += 1
+
+        perimeter += 4 - neighbours
 
     total_1 += len(region) * perimeter
 
